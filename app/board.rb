@@ -1,7 +1,7 @@
 class Board
 
   attr_reader :board_size, :start
-  attr_accessor :board, :moves, :move_num
+  attr_accessor :board, :moves, :move_options, :move_num
 
   # Take the last move and loop through, these to return the next possible move.
   Possible_Moves = [ [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1] ]
@@ -11,6 +11,7 @@ class Board
     @start = start
     @board = create_board
     @moves = []
+    @move_options = []
     @move_num = move_num
   end
 
@@ -29,13 +30,26 @@ class Board
   end
 
   def find_moves
+    self.move_options = []
     last = moves.last
     new_moves = []
     Possible_Moves.each do |move|
-      new_moves << [last[0] + move[0], last[1] + move[1]]
+      new_moves << [last[0] + move[0], last[1] + move[1]] 
     end
-    new_moves
-    binding.pry
+    new_moves.each do |move|
+      if move[0] < board_size - 1 && move[1] < board_size - 1 && move[0] >= 0 && move[1] >= 0 
+        self.move_options << move
+      end
+    end
+    self.move_options = move_options - moves
+    p move_options
+  end
+
+  def make_move
+    move = move_options.first
+    moves << move
+    self.board[move[0]][move[1]] = self.move_num
+    self.move_num += 1
   end
 
   def print_board

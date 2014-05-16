@@ -34,7 +34,8 @@ describe Board do
   end
 
   it "#find_moves from the last move" do 
-    expect(board1.find_moves).to eq([[5,1],[6,3]])
+    board1.moves = [[6,2], [7,0]]
+    expect(board1.find_moves).to eq([[5,1]])
   end
 
 end
