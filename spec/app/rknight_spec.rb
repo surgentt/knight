@@ -1,11 +1,11 @@
 require_relative '../spec_helper'
 
-describe KnightMe do 
+describe Board do 
 
-  let(:knightme) {KnightMe.new(8,[0,0])}
+  let(:board) {Board.new(8,[7,0])}
 
   it "#create_board should create a board" do
-    expect(knightme.create_board).to eq([
+    expect(board.create_board).to eq([
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
@@ -17,17 +17,9 @@ describe KnightMe do
     ])
   end
 
-  it "#print_board should put the board to the screen" do
-    expect(knightme.create_board).to eq("[
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],\n
-      [0,0,0,0,0,0,0,0],
-    ]") 
+  it "#start_location adds the start location to the moves path" do
+    board.start_location
+    expect(board.moves).first eq([7,0])
   end
 
 end
