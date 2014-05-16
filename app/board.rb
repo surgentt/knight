@@ -27,13 +27,13 @@ class Board
     binding.pry
   end
 
-  # def print_board
-  #   length = board.length
-  #   i=0
-  #   while(i < length)
-  #     p board[i]
-  #     i += 1
-  #   end
-  # end
+  def print_board
+    length = board.length
+    i=0
+    while(i < length)
+      p board[i]
+      i += 1
+    end
+  end
 
 end
